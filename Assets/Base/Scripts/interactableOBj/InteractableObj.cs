@@ -14,21 +14,46 @@ public interface IInteractableObj
     {
         
     }
-
     public virtual void Click()
+    {
+        
+    }
+    public virtual void OnInteract()
+    {
+        
+    }
+    public virtual void OnDeInteract()
     {
         
     }
 }
 public class InteractableObj : MonoBehaviour, IInteractableObj
 {
-    public virtual void Interact()
+    private bool _isHovered = false;
+
+    public virtual void OnInteract()
     {
-        print("Interact");
+        print("OnInteract");
     }
-    public virtual void DeInteract()
+    public virtual void OnDeInteract()
     {
-     print("DeInteract");   
+        print("OnDeInteract");
+    }
+    public void Interact()
+    {
+        if (!_isHovered)
+        {
+            _isHovered = true;
+            OnInteract();
+        }
+    }
+    public void DeInteract()
+    {
+        if (_isHovered)
+        {
+            _isHovered = false;
+            OnDeInteract();
+        }
     }
     
     public virtual void Click()

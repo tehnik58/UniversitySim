@@ -11,28 +11,21 @@ public class Interactor : MonoBehaviour
     private Vector2 ScreenSize;
     private RaycastHit hit;
     private Outline outline;
-    private InteractableObj interactableObj;
-    
-    void FixedUpdate()
+    private IInteractableObj interactableObj;
+
+    void Start()
+    {
+        CustomPoolStatic.CustomUpdateList += CustomUpdate;
+        CustomPoolStatic.CustomFixedUpdateList += CustomFixedUpdate;
+    }
+    void CustomFixedUpdate()
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         
         if (Physics.Raycast(ray, out hit))
         {
-            Outline _outline;
-            if (hit.transform.gameObject.TryGetComponent<Outline>(out _outline))
-            {
-                outline = _outline;
-                outline.OutlineWidth = 5.0f;
-            }
-            else if (outline)
-            {
-                outline.OutlineWidth = .0f;
-                outline = null;
-            }
-
-            InteractableObj _interactableObj;
-            if (hit.transform.gameObject.TryGetComponent<InteractableObj>(out _interactableObj))
+            IInteractableObj _interactableObj;
+            if (hit.transform.gameObject.TryGetComponent<IInteractableObj>(out _interactableObj))
             {
                 interactableObj = _interactableObj;
                 interactableObj.Interact();
@@ -51,8 +44,14 @@ public class Interactor : MonoBehaviour
             interactableObj.Click();
     }
     
-    void Update()
+    void CustomUpdate()
     {
         checkCLickOnObject();
+    }
+
+    void OnDestroy()
+    {
+        CustomPoolStatic.CustomFixedUpdateList -= CustomFixedUpdate;
+        CustomPoolStatic.CustomUpdateList -= CustomUpdate;
     }
 }

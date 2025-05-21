@@ -42,6 +42,11 @@ public class CameraMove : MonoBehaviour
         IsHovered = horizontal != 0;
     }
 
+    public void VerticalMoveFromUI(float vertical)
+    {
+        _inputVector.y = vertical;
+        IsHovered = vertical != 0;
+    }
     void MoveScore()
     {
         Vector3 moveVector = (

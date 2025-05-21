@@ -41,7 +41,9 @@ public class Interactor : MonoBehaviour
     void checkCLickOnObject()
     {
         if (interactableObj != null && Input.GetMouseButtonDown(0))
-            interactableObj.Click();
+            interactableObj.OnClick();
+        if (interactableObj != null && Input.GetMouseButtonDown(1))
+            interactableObj.OnRightClick();
     }
     
     void CustomUpdate()

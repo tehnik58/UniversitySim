@@ -4,29 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public interface IInteractableObj
-{
-    public virtual void Interact()
-    {
-        
-    }
-    public virtual void DeInteract()
-    {
-        
-    }
-    public virtual void Click()
-    {
-        
-    }
-    public virtual void OnInteract()
-    {
-        
-    }
-    public virtual void OnDeInteract()
-    {
-        
-    }
-}
 public class InteractableObj : MonoBehaviour, IInteractableObj
 {
     private bool _isHovered = false;
@@ -56,8 +33,12 @@ public class InteractableObj : MonoBehaviour, IInteractableObj
         }
     }
     
-    public virtual void Click()
+    public virtual void OnClick()
     {
         print("Click");
+    }
+    public virtual void OnRightClick()
+    {
+        print("RightClick");
     }
 }

@@ -45,13 +45,16 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.50f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Base\Scripts\interactableOBj\InteractiveBuildObj.cs" />
+    <Compile Include="Assets\BuildSystem\Scripts\BuildStaticInfo.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
+    <Compile Include="Assets\BuildSystem\Scripts\InteractiveBuildObj.cs" />
     <Compile Include="Assets\Base\Scripts\PlayerMove\CameraRotate.cs" />
+    <Compile Include="Assets\BuildSystem\Scripts\UIBuildActivator.cs" />
     <Compile Include="Assets\Base\Scripts\PlayerMove\CameraMove.cs" />
     <Compile Include="Assets\Base\Scripts\CustomPool\CustomPoolStatic.cs" />
     <Compile Include="Assets\Base\Scripts\CustomPool\CustomPoolUpdate.cs" />
+    <Compile Include="Assets\Base\interfaces\IInteractableObj.cs" />
     <Compile Include="Assets\Base\Scripts\interactableOBj\InteractableObj.cs" />
     <Compile Include="Assets\Base\Scripts\interactableOBj\Interactor.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

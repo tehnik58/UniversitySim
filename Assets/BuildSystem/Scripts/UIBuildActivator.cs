@@ -9,6 +9,10 @@ public class UIBuildActivator : MonoBehaviour
     {
         BuildStaticInfo.OnSelectedBuild += SetPosition;
     }
+    private void OnDestroy()
+    {
+        BuildStaticInfo.OnSelectedBuild -= SetPosition;
+    }
 
     void SetPosition(IInteractableObj buildObj)
     {

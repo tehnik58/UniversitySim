@@ -28,4 +28,8 @@ public interface IInteractableObj
     {
         
     }
+    public virtual void SetDeSelect()
+    {
+
+    }
 }

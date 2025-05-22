@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class InteractableObj : MonoBehaviour, IInteractableObj
+public class InteractableObj : CustomPoolUpdate, IInteractableObj
 {
     private bool _isHovered = false;
 
@@ -32,7 +32,13 @@ public class InteractableObj : MonoBehaviour, IInteractableObj
             OnDeInteract();
         }
     }
-    
+
+    public virtual void SetDeSelect()
+    {
+        _isHovered = true;
+        DeInteract();
+    }
+
     public virtual void OnClick()
     {
         print("Click");

@@ -8,10 +8,10 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private float distance;
     
-    private Vector2 ScreenSize;
     private RaycastHit hit;
-    private Outline outline;
     private IInteractableObj interactableObj;
+
+    public IInteractableObj selectedObj;
 
     void Start()
     {
@@ -27,8 +27,11 @@ public class Interactor : MonoBehaviour
             IInteractableObj _interactableObj;
             if (hit.transform.gameObject.TryGetComponent<IInteractableObj>(out _interactableObj))
             {
-                interactableObj = _interactableObj;
-                interactableObj.Interact();
+                if (interactableObj != _interactableObj)
+                {
+                    interactableObj = _interactableObj;
+                    interactableObj.Interact();
+                }
             }
             else if (interactableObj != null)
             {
@@ -38,17 +41,27 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    void checkCLickOnObject()
+    private void CheckCLickOnObject()
     {
         if (interactableObj != null && Input.GetMouseButtonDown(0))
+        {
             interactableObj.OnClick();
-        if (interactableObj != null && Input.GetMouseButtonDown(1))
+        }
+        else if (interactableObj != null && Input.GetMouseButtonDown(1))
+        {
             interactableObj.OnRightClick();
+        }
+        else if (interactableObj == null && Input.GetMouseButtonDown(0))
+        {
+            print("Emty Click");
+            GlobalInteractEvent.OnEmptyClicked.Invoke();
+        }
+                
     }
-    
-    void CustomUpdate()
+
+    private void CustomUpdate()
     {
-        checkCLickOnObject();
+        CheckCLickOnObject();
     }
 
     void OnDestroy()

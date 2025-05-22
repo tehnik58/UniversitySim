@@ -15,8 +15,12 @@ public class InteractiveBuildObj : InteractableObj
         _InteractObj = Instantiate(_PreBuildObj, this.transform, false);
         _InteractObj.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         _InteractObj.SetActive(false);
+        GlobalInteractEvent.OnEmptyClicked += SetDeSelect;
     }
-
+    private void OnDestroy()
+    {
+        GlobalInteractEvent.OnEmptyClicked -= SetDeSelect;
+    }
     public override void OnInteract()
     {
         _InteractObj.SetActive(true);
@@ -26,21 +30,28 @@ public class InteractiveBuildObj : InteractableObj
         if (_IsSelected)
             return;
         if (!BuildStaticInfo.IsSelectedBuild(this))
-            BuildStaticInfo.DeSelectedBuildInstance(this);
+            BuildStaticInfo.SetDeSelectedBuildInstance(this);
         _InteractObj.SetActive(false);
     }
-    
     public override void OnRightClick()
-    {
-        BuildStaticInfo.SelectedBuildInstance(this);
-        _IsSelected = !_IsSelected;
-    }
-    
-    public override void OnClick()
     {
         Instantiate(_BuildObj, this.transform.position, Quaternion.identity);
         this.gameObject.SetActive(false);
         Destroy(this.gameObject, 0.5f);
+    }
+    
+    public override void OnClick()
+    {
+        BuildStaticInfo.SetSelectedBuildInstance(this);
+        BuildStaticInfo.SetClickeBuildInstance(this);
+        _IsSelected = !_IsSelected;
+    }
+
+    public override void SetDeSelect()
+    {
+        _IsSelected = false;
+        print("De Select Click");
+        OnDeInteract();
     }
 
     public void SetBuildObj(GameObject buildObj, GameObject preBuildObj)
@@ -48,4 +59,6 @@ public class InteractiveBuildObj : InteractableObj
         _BuildObj = buildObj;
         _PreBuildObj = preBuildObj;
     }
+
+    
 }

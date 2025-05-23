@@ -8,10 +8,10 @@ public class CustomPoolUpdate : MonoBehaviour
 {
     void FixedUpdate()
     {
-        CustomPoolStatic.CustomFixedUpdateList.Invoke();
+        CustomPoolStatic.CustomFixedUpdateList?.Invoke();
     }
     void Update()
     {
-        CustomPoolStatic.CustomUpdateList.Invoke();
+        CustomPoolStatic.CustomUpdateList?.Invoke();
     }
 }

@@ -62,6 +62,7 @@ public class InteractiveBuildObj : InteractableObj
     {
         if (BuildStaticInfo.IsHoveredOnUI)
             return;
+        _InteractObj?.SetActive(false);
         _IsSelected = false;
     }
 

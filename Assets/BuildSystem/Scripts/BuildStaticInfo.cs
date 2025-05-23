@@ -39,12 +39,13 @@ public static class BuildStaticInfo
         if (buildObj == ClickedBuild)
         {
             Debug.Log($"{buildObj} == {ClickedBuild}");
+            
             ClickedBuild = null;
             return;
         }
         if (ClickedBuild)
         {
-            //Debug.Log("ClickedBuild");
+            Debug.Log($"DeSelect {ClickedBuild}");
             ClickedBuild?.SetDeSelect();
         }
         //Debug.Log($"new Clicked: {ClickedBuild}");

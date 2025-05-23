@@ -1,34 +1,60 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public static class BuildStaticInfo
 {
-    private static IInteractableObj SelectedBuild;
-    private static IInteractableObj ClickedBuild;
-    public static Action<IInteractableObj> OnSelectedBuild;
-    public static Action<IInteractableObj> OnDeSelectedBuild;
+    private static InteractiveBuildObj SelectedBuild;
 
-    public static void SetSelectedBuildInstance(IInteractableObj buildObj)
+    public static InteractiveBuildObj ClickedBuild;
+    public static Action<InteractiveBuildObj> OnSelectedBuild;
+    public static Action<InteractiveBuildObj> OnDeSelectedBuild;
+    public static Action<InteractiveBuildObj> OnCloseFreeUIBuild;
+    public static Action OnCloseBuildUI;
+    public static bool IsHoveredOnUI = false;
+
+    public static void SetHoveredOnUI(bool _isHoveredOnUI)
     {
-        SelectedBuild = null;
-        OnSelectedBuild?.Invoke(buildObj);
+        IsHoveredOnUI = _isHoveredOnUI;
     }
-    public static void SetDeSelectedBuildInstance(IInteractableObj buildObj)
+    public static void SetSelectedBuildInstance(InteractiveBuildObj buildObj)
     {
         SelectedBuild = buildObj;
+        OnSelectedBuild?.Invoke(buildObj);
+    }
+    public static void SetDeSelectedBuildInstance(InteractiveBuildObj buildObj)
+    {
+        SelectedBuild = null;
         OnDeSelectedBuild?.Invoke(buildObj);
     }
-    public static bool IsSelectedBuild(IInteractableObj buildObj)
+    public static bool IsSelectedBuild(InteractiveBuildObj buildObj)
     {
         return SelectedBuild == buildObj;
     }
-    public static void SetClickeBuildInstance(IInteractableObj buildObj)
+    public static void SetClickeBuildInstance(InteractiveBuildObj buildObj)
     {
         if (buildObj == ClickedBuild)
+        {
+            Debug.Log($"{buildObj} == {ClickedBuild}");
+            ClickedBuild = null;
             return;
-        ClickedBuild?.SetDeSelect();
+        }
+        if (ClickedBuild)
+        {
+            Debug.Log("ClickedBuild");
+            ClickedBuild?.SetDeSelect();
+        }
+        Debug.Log($"new Clicked: {ClickedBuild}");
         ClickedBuild = buildObj;
+    }
+    public static void OnBuild()
+    {
+        IsHoveredOnUI = false;
+        OnCloseBuildUI.Invoke();
+        Debug.Log("ClickedBuild = null");
+        ClickedBuild = null;
+        SelectedBuild = null;
     }
 }

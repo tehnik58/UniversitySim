@@ -29,6 +29,7 @@ public class Interactor : MonoBehaviour
             {
                 if (interactableObj != _interactableObj)
                 {
+                    print("OK");
                     interactableObj = _interactableObj;
                     interactableObj.Interact();
                 }
@@ -45,6 +46,7 @@ public class Interactor : MonoBehaviour
     {
         if (interactableObj != null && Input.GetMouseButtonDown(0))
         {
+            print("Click");
             interactableObj.OnClick();
         }
         else if (interactableObj != null && Input.GetMouseButtonDown(1))

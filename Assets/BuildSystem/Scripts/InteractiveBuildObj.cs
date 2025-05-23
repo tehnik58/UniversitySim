@@ -13,25 +13,29 @@ public class InteractiveBuildObj : InteractableObj
     private void Start()
     {
         _InteractObj = Instantiate(_PreBuildObj, this.transform, false);
-        _InteractObj.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        _InteractObj.transform.position = transform.position;
         _InteractObj.SetActive(false);
         GlobalInteractEvent.OnEmptyClicked += SetDeSelect;
     }
     private void OnDestroy()
     {
+        //if(BuildStaticInfo.ClickedBuild == this)
+
         GlobalInteractEvent.OnEmptyClicked -= SetDeSelect;
     }
     public override void OnInteract()
     {
-        _InteractObj.SetActive(true);
+        _InteractObj?.SetActive(true);
     }
     public override void OnDeInteract()
     {
+        print("DeSelectBuild");
         if (_IsSelected)
             return;
         if (!BuildStaticInfo.IsSelectedBuild(this))
             BuildStaticInfo.SetDeSelectedBuildInstance(this);
-        _InteractObj.SetActive(false);
+        if(_InteractObj)
+            _InteractObj?.SetActive(false);
     }
     public override void OnRightClick()
     {
@@ -42,23 +46,36 @@ public class InteractiveBuildObj : InteractableObj
     
     public override void OnClick()
     {
+        print($"Click Build _IsSelected:{_IsSelected}");
+        if (BuildStaticInfo.IsHoveredOnUI)
+            return;
         BuildStaticInfo.SetSelectedBuildInstance(this);
         BuildStaticInfo.SetClickeBuildInstance(this);
         _IsSelected = !_IsSelected;
+        print($"Click Build _IsSelected:{_IsSelected}");
+        if (!_IsSelected)
+        {
+            BuildStaticInfo.OnCloseBuildUI?.Invoke();
+        } 
     }
 
     public override void SetDeSelect()
     {
+        if (BuildStaticInfo.IsHoveredOnUI)
+            return;
         _IsSelected = false;
-        print("De Select Click");
         OnDeInteract();
     }
 
     public void SetBuildObj(GameObject buildObj, GameObject preBuildObj)
     {
+        print("switch Build");
+        Destroy(_InteractObj);
         _BuildObj = buildObj;
         _PreBuildObj = preBuildObj;
-    }
+        _InteractObj = Instantiate(_PreBuildObj, this.transform, false);
+        _InteractObj.transform.position = transform.position;
 
-    
+        BuildStaticInfo.OnCloseBuildUI.Invoke();
+    }
 }

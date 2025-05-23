@@ -2817,6 +2817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _BuildObj: {fileID: 404458285}
   _PreBuildObj: {fileID: 1016806427}
+  _IsSelected: 0
 --- !u!1 &1213549929
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,6 +3419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _BuildObj: {fileID: 404458285}
   _PreBuildObj: {fileID: 1016806427}
+  _IsSelected: 0
 --- !u!65 &1316499646
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4630,7 +4632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 145.54001, y: 42.35782}
+  m_AnchoredPosition: {x: 145.54004, y: 42.357788}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1938768465
@@ -4811,7 +4813,7 @@ Canvas:
   m_GameObject: {fileID: 1985173866}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 330585545}
   m_PlaneDistance: 1
   m_PixelPerfect: 1

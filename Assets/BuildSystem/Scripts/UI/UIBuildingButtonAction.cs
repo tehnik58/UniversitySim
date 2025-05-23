@@ -13,7 +13,7 @@ public class UIBuildingButtonAction : MonoBehaviour
     }
     public void Build()
     {
-        print(buildingInfo);
+        //print(buildingInfo);
         BuildStaticInfo.ClickedBuild?.SetBuildObj(buildingInfo.Building, buildingInfo.PreBuilding);
     }
 }

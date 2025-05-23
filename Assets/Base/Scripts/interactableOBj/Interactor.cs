@@ -10,12 +10,12 @@ public class Interactor : MonoBehaviour
     
     private RaycastHit hit;
     private IInteractableObj interactableObj;
-
-    public IInteractableObj selectedObj;
+    private bool StabilizeInputMouseBtn0 = false;
+    private bool StabilizeInputMouseBtn1 = false;
 
     void Start()
     {
-        CustomPoolStatic.CustomUpdateList += CustomUpdate;
+        //CustomPoolStatic.CustomUpdateList += CustomUpdate;
         CustomPoolStatic.CustomFixedUpdateList += CustomFixedUpdate;
     }
     void CustomFixedUpdate()
@@ -44,31 +44,45 @@ public class Interactor : MonoBehaviour
 
     private void CheckCLickOnObject()
     {
-        if (interactableObj != null && Input.GetMouseButtonDown(0))
+        if (interactableObj != null && StabilizeInputMouseBtn0)
         {
-            print("Click");
-            interactableObj.OnClick();
+            print($"Click: {interactableObj} from {this}");
+            interactableObj?.OnClick();
         }
-        else if (interactableObj != null && Input.GetMouseButtonDown(1))
-        {
-            interactableObj.OnRightClick();
-        }
-        else if (interactableObj == null && Input.GetMouseButtonDown(0))
+        else if (interactableObj == null && StabilizeInputMouseBtn0)
         {
             print("Emty Click");
             GlobalInteractEvent.OnEmptyClicked.Invoke();
         }
-                
+        if (interactableObj != null && StabilizeInputMouseBtn1)
+        {
+            print($"ClickRight: {interactableObj}");
+            interactableObj?.OnRightClick();
+        }
     }
 
-    private void CustomUpdate()
+    private void StabilizeMouseInput()
     {
+        bool inputBtn = Input.GetMouseButtonDown(0);
+        if ( inputBtn != StabilizeInputMouseBtn0 && !StabilizeInputMouseBtn0)
+            StabilizeInputMouseBtn0 = true;
+        else
+            StabilizeInputMouseBtn0 = false;
+        inputBtn = Input.GetMouseButtonDown(1);
+        if ( inputBtn != StabilizeInputMouseBtn1 && !StabilizeInputMouseBtn1)
+            StabilizeInputMouseBtn1 = true;
+        else
+            StabilizeInputMouseBtn1 = false;
+    }
+    private void Update()
+    {
+        StabilizeMouseInput();
         CheckCLickOnObject();
     }
 
     void OnDestroy()
     {
-        CustomPoolStatic.CustomFixedUpdateList -= CustomFixedUpdate;
-        CustomPoolStatic.CustomUpdateList -= CustomUpdate;
+        CustomPoolStatic.CustomFixedUpdateList -= CustomFixedUpdate; 
+        //CustomPoolStatic.CustomUpdateList -= CustomUpdate;
     }
 }

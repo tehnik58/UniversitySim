@@ -8,7 +8,7 @@ public class InteractiveBuildObj : InteractableObj
     [SerializeField] GameObject _BuildObj;
     [SerializeField] GameObject _PreBuildObj;
     private GameObject _InteractObj;
-    private bool _IsSelected = false;
+    [SerializeField] private bool _IsSelected = false;
     
     private void Start()
     {
@@ -25,11 +25,12 @@ public class InteractiveBuildObj : InteractableObj
     }
     public override void OnInteract()
     {
+        print($"OnInteract: {_InteractObj}");
         _InteractObj?.SetActive(true);
     }
     public override void OnDeInteract()
     {
-        print("DeSelectBuild");
+        //print("DeSelectBuild");
         if (_IsSelected)
             return;
         if (!BuildStaticInfo.IsSelectedBuild(this))
@@ -46,13 +47,11 @@ public class InteractiveBuildObj : InteractableObj
     
     public override void OnClick()
     {
-        print($"Click Build _IsSelected:{_IsSelected}");
         if (BuildStaticInfo.IsHoveredOnUI)
             return;
         BuildStaticInfo.SetSelectedBuildInstance(this);
         BuildStaticInfo.SetClickeBuildInstance(this);
         _IsSelected = !_IsSelected;
-        print($"Click Build _IsSelected:{_IsSelected}");
         if (!_IsSelected)
         {
             BuildStaticInfo.OnCloseBuildUI?.Invoke();
@@ -64,18 +63,16 @@ public class InteractiveBuildObj : InteractableObj
         if (BuildStaticInfo.IsHoveredOnUI)
             return;
         _IsSelected = false;
-        OnDeInteract();
     }
 
     public void SetBuildObj(GameObject buildObj, GameObject preBuildObj)
     {
-        print("switch Build");
+        //print("switch Build");
+        BuildStaticInfo.OnCloseBuildUI.Invoke();
         Destroy(_InteractObj);
         _BuildObj = buildObj;
         _PreBuildObj = preBuildObj;
         _InteractObj = Instantiate(_PreBuildObj, this.transform, false);
         _InteractObj.transform.position = transform.position;
-
-        BuildStaticInfo.OnCloseBuildUI.Invoke();
     }
 }

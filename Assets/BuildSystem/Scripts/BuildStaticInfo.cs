@@ -35,6 +35,7 @@ public static class BuildStaticInfo
     }
     public static void SetClickeBuildInstance(InteractiveBuildObj buildObj)
     {
+        Debug.Log($"ClickedBuild: {ClickedBuild}, buildObj: {buildObj}");
         if (buildObj == ClickedBuild)
         {
             Debug.Log($"{buildObj} == {ClickedBuild}");
@@ -43,17 +44,17 @@ public static class BuildStaticInfo
         }
         if (ClickedBuild)
         {
-            Debug.Log("ClickedBuild");
+            //Debug.Log("ClickedBuild");
             ClickedBuild?.SetDeSelect();
         }
-        Debug.Log($"new Clicked: {ClickedBuild}");
+        //Debug.Log($"new Clicked: {ClickedBuild}");
         ClickedBuild = buildObj;
     }
     public static void OnBuild()
     {
         IsHoveredOnUI = false;
         OnCloseBuildUI.Invoke();
-        Debug.Log("ClickedBuild = null");
+        //Debug.Log("ClickedBuild = null");
         ClickedBuild = null;
         SelectedBuild = null;
     }

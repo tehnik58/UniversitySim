@@ -18,6 +18,7 @@ public static class BuildStaticInfo
     public static void SetHoveredOnUI(bool _isHoveredOnUI)
     {
         IsHoveredOnUI = _isHoveredOnUI;
+        GlobalInteractEvent.IsLockOnUI = _isHoveredOnUI;
     }
     public static void SetSelectedBuildInstance(InteractiveBuildObj buildObj)
     {
@@ -33,7 +34,7 @@ public static class BuildStaticInfo
     {
         return SelectedBuild == buildObj;
     }
-    public static void SetClickeBuildInstance(InteractiveBuildObj buildObj)
+    public static void SetClickedBuildInstance(InteractiveBuildObj buildObj)
     {
         Debug.Log($"ClickedBuild: {ClickedBuild}, buildObj: {buildObj}");
         if (buildObj == ClickedBuild)
@@ -55,7 +56,6 @@ public static class BuildStaticInfo
     {
         IsHoveredOnUI = false;
         OnCloseBuildUI.Invoke();
-        //Debug.Log("ClickedBuild = null");
         ClickedBuild = null;
         SelectedBuild = null;
     }

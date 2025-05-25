@@ -15,7 +15,6 @@ public class Interactor : MonoBehaviour
 
     void Start()
     {
-        //CustomPoolStatic.CustomUpdateList += CustomUpdate;
         CustomPoolStatic.CustomFixedUpdateList += CustomFixedUpdate;
     }
     void CustomFixedUpdate()
@@ -44,17 +43,17 @@ public class Interactor : MonoBehaviour
 
     private void CheckCLickOnObject()
     {
-        if (interactableObj != null && StabilizeInputMouseBtn0)
+        if (interactableObj != null && StabilizeInputMouseBtn0 && !GlobalInteractEvent.IsLockOnUI)
         {
             print($"Click: {interactableObj} from {this}");
             interactableObj?.OnClick();
         }
-        else if (interactableObj == null && StabilizeInputMouseBtn0)
+        else if (interactableObj == null && StabilizeInputMouseBtn0 && !GlobalInteractEvent.IsLockOnUI)
         {
             print("Emty Click");
             GlobalInteractEvent.OnEmptyClicked.Invoke();
         }
-        if (interactableObj != null && StabilizeInputMouseBtn1)
+        if (interactableObj != null && StabilizeInputMouseBtn1 && !GlobalInteractEvent.IsLockOnUI)
         {
             print($"ClickRight: {interactableObj}");
             interactableObj?.OnRightClick();
@@ -83,6 +82,5 @@ public class Interactor : MonoBehaviour
     void OnDestroy()
     {
         CustomPoolStatic.CustomFixedUpdateList -= CustomFixedUpdate; 
-        //CustomPoolStatic.CustomUpdateList -= CustomUpdate;
     }
 }

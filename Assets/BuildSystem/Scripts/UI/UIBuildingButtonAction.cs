@@ -16,4 +16,10 @@ public class UIBuildingButtonAction : MonoBehaviour
         //print(buildingInfo);
         BuildStaticInfo.ClickedBuild?.SetBuildObj(buildingInfo.Building, buildingInfo.PreBuilding);
     }
+
+    public void OnHover(bool _isHovered)
+    {
+        BuildStaticInfo.IsHoveredOnUI = _isHovered;
+        GlobalInteractEvent.IsLockOnUI = _isHovered;
+    }
 }

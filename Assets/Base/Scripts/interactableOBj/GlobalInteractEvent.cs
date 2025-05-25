@@ -6,4 +6,5 @@ using UnityEngine;
 public static class GlobalInteractEvent
 {
     public static Action OnEmptyClicked;
+    public static bool IsLockOnUI = false;
 }

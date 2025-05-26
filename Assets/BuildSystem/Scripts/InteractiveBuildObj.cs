@@ -39,6 +39,7 @@ public class InteractiveBuildObj : InteractableObj
     public override void OnRightClick()
     {
         GameObject building = Instantiate(_BuildObj, this.transform.position, Quaternion.identity);
+        BuildStaticInfo.OnBuildEvent?.Invoke(building);
         BuildStaticInfo.OnCloseBuildUI.Invoke();
         building.SetActive(true);
         building.transform.rotation = transform.rotation;
@@ -63,7 +64,6 @@ public class InteractiveBuildObj : InteractableObj
     {
         if (BuildStaticInfo.IsHoveredOnUI)
             return;
-        //print("SetDeSelect");
         _InteractObj?.SetActive(false);
         _IsSelected = false;
     }

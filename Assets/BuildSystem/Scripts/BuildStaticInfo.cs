@@ -12,6 +12,7 @@ public static class BuildStaticInfo
     public static Action<InteractiveBuildObj> OnSelectedBuild;
     public static Action<InteractiveBuildObj> OnDeSelectedBuild;
     public static Action<InteractiveBuildObj> OnCloseFreeUIBuild;
+    public static Action<GameObject> OnBuildEvent;
     public static Action OnCloseBuildUI;
     public static bool IsHoveredOnUI = false;
 
@@ -49,7 +50,6 @@ public static class BuildStaticInfo
             Debug.Log($"DeSelect {ClickedBuild}");
             ClickedBuild?.SetDeSelect();
         }
-        //Debug.Log($"new Clicked: {ClickedBuild}");
         ClickedBuild = buildObj;
     }
     public static void OnBuild()

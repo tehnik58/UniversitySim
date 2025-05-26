@@ -72,6 +72,7 @@
     <Compile Include="Assets\Base\Scripts\CustomPool\CustomPoolStatic.cs" />
     <Compile Include="Assets\Base\Scripts\CustomPool\CustomPoolUpdate.cs" />
     <Compile Include="Assets\Base\interfaces\IInteractableObj.cs" />
+    <Compile Include="Assets\Base\UI\Timer\Scripts\GameTimer.cs" />
     <Compile Include="Assets\Base\Scripts\interactableOBj\InteractableObj.cs" />
     <Compile Include="Assets\BuildSystem\Scripts\UI\UIBuildListBuildingCreator.cs" />
     <Compile Include="Assets\Base\Scripts\interactableOBj\Interactor.cs" />

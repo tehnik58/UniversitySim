@@ -44,6 +44,9 @@ public class CameraMove : MonoBehaviour
 
     public void VerticalMoveFromUI(float vertical)
     {
+        GlobalInteractEvent.IsLockOnUI = vertical != 0;
+        //BuildStaticInfo.IsHoveredOnUI = vertical != 0;
+
         _inputVector.y = vertical;
         IsHovered = vertical != 0;
     }
@@ -52,7 +55,7 @@ public class CameraMove : MonoBehaviour
         Vector3 moveVector = (
             _player.transform.right * _inputVector.x + 
                              _player.transform.forward * _inputVector.z + 
-                             _cameraPlayer.transform.forward * _inputVector.y
+                             _cameraPlayer.transform.forward * (Input.GetMouseButton(0) ? _inputVector.y: 0.0f)
             ).normalized * _speedUp;
         
             if (moveVector != Vector3.zero)

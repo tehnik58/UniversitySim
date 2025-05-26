@@ -6,27 +6,37 @@ public class CameraRotate : MonoBehaviour
 {
     private RaycastHit _hit;
     
-    [SerializeField] private bool IsDegugMode;
     [SerializeField] private GameObject _playerCamera;
-    [SerializeField] private GameObject _debugCentrObj;
     [SerializeField] private float      RotationSpeed;
-
+    private float      _rotation;
+/*
     void Start()
     {
         CustomPoolStatic.CustomFixedUpdateList += CustomFixedUpdate;
     }
+    
     void CustomFixedUpdate()
     {
         if (Physics.Raycast(transform.position, _playerCamera.transform.forward, out _hit, 1000, LayerMask.GetMask("Ground")))
         {
         }
+    }*/
+
+    public void RotateFromUI(float horizontal)
+    {
+        GlobalInteractEvent.IsLockOnUI = horizontal != 0;
+        print(horizontal);
+        _rotation = RotationSpeed * horizontal;
     }
     void Update()
     {
-        if (IsDegugMode)
-            _debugCentrObj.transform.position = _hit.point;
         Vector3 preVector = transform.position - _hit.point;
-        
-        this.transform.RotateAround(_hit.point, Vector3.up, Input.GetKey(KeyCode.Q)? RotationSpeed * Time.deltaTime: Input.GetKey(KeyCode.E)? - RotationSpeed * Time.deltaTime: 0);
+
+        if (!GlobalInteractEvent.IsLockOnUI)
+            _rotation = Input.GetKey(KeyCode.Q) ? RotationSpeed:
+                Input.GetKey(KeyCode.E) ? -RotationSpeed  : 0;
+        print(GlobalInteractEvent.IsLockOnUI? (Input.GetMouseButton(0) ? _rotation: 0.0f): _rotation);
+        this.transform.RotateAround(_hit.point, Vector3.up,
+            (GlobalInteractEvent.IsLockOnUI? (Input.GetMouseButton(0) ? _rotation: 0.0f): _rotation) * Time.deltaTime);
     }
 }

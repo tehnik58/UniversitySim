@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,13 +8,17 @@ public class UIAdapter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI moneyField;
     [SerializeField] private TextMeshProUGUI SatisfactionField;
+    [SerializeField] private TextMeshProUGUI SatisfactionField1;
+    [SerializeField] private TextMeshProUGUI StudentField;
+    [SerializeField] private TextMeshProUGUI TeacherField;
+    [SerializeField] private TextMeshProUGUI pribInfo;
 
     void Update()
     {
-        moneyField.text = $"Бюджет: {StaticEconomicInfo.Money}";
-        if(GamplayStaticController.satisfaction > 0.5f)
-            SatisfactionField.text = $"Удовлетворенность: норм";
-        else
-            SatisfactionField.text = $"Удовлетворенность: боль";
+        moneyField.text = $"Р‘СЋРґР¶РµС‚: {StaticEconomicInfo.Money}";
+        SatisfactionField.text = $"РћС‚РЅРѕС€РµРЅРёРµ: {GamplayStaticController.GetSatisfaction()}";
+        SatisfactionField1.text = $"РћС‚РЅРѕС€РµРЅРёРµ: {GamplayStaticController.GetScoreSatisfaction()}";
+        StudentField.text = $"РЈС‡Р°С‰РёРµСЃСЏ: {StaticEconomicInfo.GetStudentCount()}";
+        TeacherField.text = $"РџСЂРµРїРѕРґР°РІР°С‚РµР»Рё: {StaticEconomicInfo.GetTeacherCount()}";
     }
 }

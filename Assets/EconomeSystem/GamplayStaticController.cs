@@ -8,7 +8,7 @@ using UnityEngine;
 public static class GamplayStaticController
 {
     private static int expectedNumberOfBuildings;
-    public static float satisfaction = 1.0f;
+    private static float satisfaction = 1.0f;
 
     public static Action<bool> PauseEvent;
 
@@ -23,11 +23,21 @@ public static class GamplayStaticController
     }
     public static bool CheckOnLose()
     {
-        ScoreSatisfaction();
         return StaticEconomicInfo.Money < 0.0f || satisfaction < 0.0;
     }
     public static void ScoreSatisfaction()
     {
-        satisfaction += (StaticEconomicInfo.GetTeacherCount()/ StaticEconomicInfo.GetStudentCount())/(1/8) - (2 - StaticEconomicInfo.GetRoomCount()/2);
+        if (StaticEconomicInfo.GetTeacherCount() != 0 && StaticEconomicInfo.GetStudentCount() != 0)
+            satisfaction += (StaticEconomicInfo.GetTeacherCount()/ StaticEconomicInfo.GetStudentCount())/(1.0f/8.0f) - (2 - StaticEconomicInfo.GetRoomCount()/3);
+    }
+    public static float GetScoreSatisfaction()
+    {
+        if (StaticEconomicInfo.GetTeacherCount() != 0 && StaticEconomicInfo.GetStudentCount() != 0)
+            return (StaticEconomicInfo.GetTeacherCount()/ StaticEconomicInfo.GetStudentCount())/(1.0f/8.0f) - (2 - StaticEconomicInfo.GetRoomCount()/3);
+        return 0.0f;
+    }
+    public static float GetSatisfaction()
+    {
+        return satisfaction;
     }
 }

@@ -22,7 +22,7 @@ public class GameTimer : MonoBehaviour
         "Ìàé", "Èþíü", "Èþëü", "Àâãóñò"
     };
 
-    private float currentSpeedMultiplier = 1f;
+    private float currentSpeedMultiplier = 15f;
     private float currentYearTime = 0f;
     private int currentYear = 1;
     private bool isTimerRunning = true;
@@ -30,13 +30,20 @@ public class GameTimer : MonoBehaviour
     void Start()
     {
         StartCoroutine(YearCycle());
+        TogglePause(true);
+
+        GamplayStaticController.PauseEvent += TogglePause;
+    }
+    private void OnDestroy()
+    {
+        GamplayStaticController.PauseEvent -= TogglePause;
     }
 
     IEnumerator YearCycle()
     {
         while (true)
         {
-            if (isTimerRunning)
+            if (isTimerRunning && !GamplayStaticController.CheckOnLose())
             {
                 float scaledDeltaTime = Time.deltaTime * currentSpeedMultiplier;
                 currentYearTime += scaledDeltaTime;
@@ -45,11 +52,15 @@ public class GameTimer : MonoBehaviour
 
                 if (currentYearTime >= baseSecondsPerYear)
                 {
+                    //StaticEconomicInfo.OnStartYers.Invoke();
+                    StaticEconomicInfo.AcceptEconomicIteration();
                     currentYear++;
                     currentYearTime = 0f;
                     Debug.Log($"Year {currentYear} started!");
                 }
             }
+            if (GamplayStaticController.CheckOnLose())
+                print("LOSE");
             yield return null;
         }
     }

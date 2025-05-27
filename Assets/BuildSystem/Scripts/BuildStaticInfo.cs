@@ -7,6 +7,7 @@ using UnityEngine;
 public static class BuildStaticInfo
 {
     private static InteractiveBuildObj SelectedBuild;
+    private static int CountOfBuilding;
 
     public static InteractiveBuildObj ClickedBuild;
     public static Action<InteractiveBuildObj> OnSelectedBuild;
@@ -16,6 +17,14 @@ public static class BuildStaticInfo
     public static Action OnCloseBuildUI;
     public static bool IsHoveredOnUI = false;
 
+    public static int GetCountOfBuilding()
+    {
+        return CountOfBuilding;
+    }
+    public static void AddBuilding()
+    {
+        CountOfBuilding++;
+    }
     public static void SetHoveredOnUI(bool _isHoveredOnUI)
     {
         IsHoveredOnUI = _isHoveredOnUI;

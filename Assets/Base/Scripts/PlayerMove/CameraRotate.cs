@@ -35,7 +35,6 @@ public class CameraRotate : MonoBehaviour
         if (!GlobalInteractEvent.IsLockOnUI)
             _rotation = Input.GetKey(KeyCode.Q) ? RotationSpeed:
                 Input.GetKey(KeyCode.E) ? -RotationSpeed  : 0;
-        print(GlobalInteractEvent.IsLockOnUI? (Input.GetMouseButton(0) ? _rotation: 0.0f): _rotation);
         this.transform.RotateAround(_hit.point, Vector3.up,
             (GlobalInteractEvent.IsLockOnUI? (Input.GetMouseButton(0) ? _rotation: 0.0f): _rotation) * Time.deltaTime);
     }

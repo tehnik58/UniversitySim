@@ -1,15 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class InteractiveBuildObj : InteractableObj
 {
     [SerializeField] GameObject _BuildObj;
     [SerializeField] GameObject _PreBuildObj;
-    private GameObject _InteractObj;
+    [SerializeField] float Price = 33.0f;
+    [SerializeField] float PricePerYear = 20.0f;
     [SerializeField] private bool _IsSelected = false;
-    
+    private GameObject _InteractObj;
+
     private void Start()
     {
         _InteractObj = Instantiate(_PreBuildObj, this.transform, false);
@@ -38,13 +41,18 @@ public class InteractiveBuildObj : InteractableObj
     }
     public override void OnRightClick()
     {
+        if (!StaticEconomicInfo.TryBuy(33.3f))
+            return;
         GameObject building = Instantiate(_BuildObj, this.transform.position, Quaternion.identity);
         BuildStaticInfo.OnBuildEvent?.Invoke(building);
         BuildStaticInfo.OnCloseBuildUI.Invoke();
+        BuildStaticInfo.AddBuilding();
+        GamplayStaticController.CheckConditionsForUnPause();
         building.SetActive(true);
         building.transform.rotation = transform.rotation;
         this.gameObject.SetActive(false);
         Destroy(this.gameObject, 0.5f);
+        
     }
     
     public override void OnClick()

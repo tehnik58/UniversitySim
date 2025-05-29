@@ -31,6 +31,11 @@ public struct EducationalProgram
     {
         return StudentCount*PriceForStudentPerYers - (TeacherCount*PriceTeachersPerYers + RoomCount*PricePerYersRoom);
     }
+
+    public float ScoreNegative()
+    {
+        return - (TeacherCount*PriceTeachersPerYers + RoomCount*PricePerYersRoom);
+    }
 }
 public static class StaticEconomicInfo
 {
@@ -58,6 +63,11 @@ public static class StaticEconomicInfo
     public static float ScorePerYers(int index)
     {
         return EduPrograms[index].ScoreEconomic();
+    }
+
+    public static void ApplyNegatyveIter()
+    {
+        Money+=EduPrograms[EduPrograms.Count - 1].ScoreNegative();
     }
     public static float GetTeacherCount()
     {

@@ -18,6 +18,7 @@ public class UIInputData : MonoBehaviour
             float.Parse(roomCount.text))
             );
         GamplayStaticController.CheckConditionsForUnPause();
+        StaticEconomicInfo.ApplyNegatyveIter();
     }
 
     void Update()

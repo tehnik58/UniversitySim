@@ -13,6 +13,7 @@ public class NpcController : MonoBehaviour
     private Transform currentTarget;
     private List<Vector3> path = new List<Vector3>();
     private int currentWaypointIndex = 0;
+    private bool isFirstTarget = true;
 
     void OnEnable()
     {
@@ -36,13 +37,10 @@ public class NpcController : MonoBehaviour
             return;
         }
 
-        // Получаем цель (вейпоинт или выход)
-        currentTarget = GetNextTarget();
+        currentTarget = GetNextTarget(); // Получаем первую цель
 
-        // Строим путь
         path = GetPath(transform.position, currentTarget.position);
 
-        // Если путь не построен (например, цель вне NavMesh), пробуем ещё раз
         if (path.Count == 0)
         {
             StartCoroutine(RetryPathfinding());
@@ -54,19 +52,32 @@ public class NpcController : MonoBehaviour
 
     private Transform GetNextTarget()
     {
-        if (Random.Range(0f, 1f) < 0.05f)
+        if (isFirstTarget)
         {
-            return WaypointManager.Instance.GetExitPoint();
+            isFirstTarget = false; // Первый раз всегда выбираем случайную точку
+            return WaypointManager.Instance.GetRandomWaypoint();
         }
         else
         {
-            return WaypointManager.Instance.GetRandomWaypoint();
+            // После первого выбора - 5% шанс выбрать выход
+            if (Random.Range(0f, 1f) < 0.05f)
+            {
+                return WaypointManager.Instance.GetExitPoint();
+            }
+            else
+            {
+                return WaypointManager.Instance.GetRandomWaypoint();
+            }
         }
     }
-
+    public void ResetNpc() // Метод для сброса состояния при возврате в пул
+    {
+        isFirstTarget = true;
+        // Сброс других состояний, если нужно
+    }
     private IEnumerator RetryPathfinding()
     {
-        yield return new WaitForSeconds(0.5f); // Небольшая задержка перед повторной попыткой
+        yield return new WaitForSeconds(0.5f); 
         InitializeBehavior();
     }
 
@@ -84,7 +95,7 @@ public class NpcController : MonoBehaviour
         Vector3 targetPosition = path[currentWaypointIndex];
         Vector3 direction = (targetPosition - transform.position).normalized;
 
-        // Поворот
+        
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -95,10 +106,10 @@ public class NpcController : MonoBehaviour
             );
         }
 
-        // Движение
+        
         transform.position += direction * moveSpeed * Time.deltaTime;
 
-        // Проверка достижения точки
+       
         if (Vector3.Distance(transform.position, targetPosition) < waypointThreshold)
         {
             currentWaypointIndex++;
@@ -119,7 +130,7 @@ public class NpcController : MonoBehaviour
         }
         else
         {
-            // Выбираем новую цель
+            
             InitializeBehavior();
         }
     }

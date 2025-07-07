@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8989284041764428696}
   - component: {fileID: 5324339116124003396}
   - component: {fileID: 1019556837747753933}
-  - component: {fileID: 7267975657511892321}
+  - component: {fileID: 1818770085243671328}
   m_Layer: 0
-  m_Name: Student
+  m_Name: Teachers
   m_TagString: Npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4419ed945ed70294088071c1611a56e2, type: 2}
+  - {fileID: 2100000, guid: b52f618db1b18f1438ddb2cc31db4c13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   moveSpeed: 1.8
   rotationSpeed: 8
   waypointThreshold: 0.8
---- !u!114 &7267975657511892321
+--- !u!114 &1818770085243671328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,4 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f608ca304c050764aa88adfe269eeb78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTeacher: 0
+  isTeacher: 1

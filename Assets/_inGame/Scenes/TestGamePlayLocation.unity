@@ -8200,7 +8200,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 501345789}
   spawnRadius: 2
   maxActiveNpcs: 35
-  spawnDelay: 3
+  spawnDelay: 2
   spawnPointColor: {r: 0, g: 1, b: 0, a: 1}
   spawnPointRadius: 0.5
 --- !u!1 &624764559
@@ -14373,7 +14373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb238e8a2ad9eec459b5bb226a52ebd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personPrefab: {fileID: 7344836515459870153, guid: 3e22d805118cbd446893965ac0a24eba,
+  studentPrefab: {fileID: 7344836515459870153, guid: 3e22d805118cbd446893965ac0a24eba,
+    type: 3}
+  teacherPrefab: {fileID: 7344836515459870153, guid: b9b604e95ea31cc4bb8e07401ea8f058,
     type: 3}
   initialPoolSize: 25
   maxPoolSize: 50

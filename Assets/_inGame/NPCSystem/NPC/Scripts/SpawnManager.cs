@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float spawnRadius = 2f;
     [SerializeField] private int maxActiveNpcs = 35;
-    [SerializeField] private float spawnDelay = 1f; // Задержка между спавнами
+    [SerializeField] private float spawnDelay = 1f;
 
     [Header("Gizmo Settings")]
     [SerializeField] private Color spawnPointColor = Color.green;
@@ -33,14 +33,16 @@ public class SpawnManager : MonoBehaviour
                 SpawnNpc();
             }
 
-            // Задержка перед следующей проверкой
             yield return new WaitForSeconds(spawnDelay);
         }
     }
 
     private void SpawnNpc()
     {
-        GameObject npc = NpcPool.Instance.GetNpc();
+        // Determine NPC type with 1/6 probability for teacher
+        bool isTeacher = Random.value < 1f / 10f;
+
+        GameObject npc = NpcPool.Instance.GetNpc(isTeacher);
         if (npc == null || spawnPoint == null) return;
 
         Vector3 spawnPos = spawnPoint.position + Random.insideUnitSphere * spawnRadius;

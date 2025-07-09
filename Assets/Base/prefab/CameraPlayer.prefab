@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1337162955261637430}
   - component: {fileID: 5997763760252812754}
   - component: {fileID: 3317156389797202205}
-  - component: {fileID: 7491943859604758783}
   m_Layer: 0
   m_Name: CameraPlayer
   m_TagString: Untagged
@@ -63,25 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f25f3134e953534fb54999f4acad6e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDegugMode: 0
   _playerCamera: {fileID: 7298585585175542334}
-  _debugCentrObj: {fileID: 0}
   RotationSpeed: 180
---- !u!114 &7491943859604758783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727682897757919851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be25880ab61b03949bce5690742b0d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cameraPlayer: {fileID: 1727682897757919851}
-  _camera: {fileID: 4873292056219797070}
-  distance: 100
 --- !u!1 &7298585585175542334
 GameObject:
   m_ObjectHideFlags: 0

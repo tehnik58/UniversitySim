@@ -44,7 +44,6 @@ public class CameraMove : MonoBehaviour
 
     public void VerticalMoveFromUI(float vertical)
     {
-        GlobalInteractEvent.IsLockOnUI = vertical != 0;
         //BuildStaticInfo.IsHoveredOnUI = vertical != 0;
 
         _inputVector.y = vertical;

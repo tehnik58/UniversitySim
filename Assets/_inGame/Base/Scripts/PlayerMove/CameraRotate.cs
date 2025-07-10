@@ -28,6 +28,11 @@ public class CameraRotate : MonoBehaviour
         print(horizontal);
         _rotation = RotationSpeed * horizontal;
     }
+
+    public Vector3 GetPivotPoint()
+    {
+        return _hit.point;
+    }
     void Update()
     {
         Vector3 preVector = transform.position - _hit.point;
@@ -37,5 +42,7 @@ public class CameraRotate : MonoBehaviour
                 Input.GetKey(KeyCode.E) ? -RotationSpeed  : 0;
         this.transform.RotateAround(_hit.point, Vector3.up,
             (GlobalInteractEvent.IsLockOnUI? (Input.GetMouseButton(0) ? _rotation: 0.0f): _rotation) * Time.deltaTime);
+
+    
     }
 }

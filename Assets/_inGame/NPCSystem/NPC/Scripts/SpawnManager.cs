@@ -13,10 +13,27 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Color spawnPointColor = Color.green;
     [SerializeField] private float spawnPointRadius = 0.5f;
 
-    private void Start()
+    private bool hasStartedSpawning = false;
+
+    private void OnEnable()
     {
-        StartCoroutine(SpawnRoutine());
+        GamplayStaticController.PauseEvent += HandlePauseEvent;
     }
+
+    private void OnDisable()
+    {
+        GamplayStaticController.PauseEvent -= HandlePauseEvent;
+    }
+    private void HandlePauseEvent(bool isPaused)
+    {
+        
+        if (!isPaused && !hasStartedSpawning)
+        {
+            StartCoroutine(SpawnRoutine());
+            hasStartedSpawning = true;
+        }
+    }
+
 
     private IEnumerator SpawnRoutine()
     {

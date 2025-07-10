@@ -1764,6 +1764,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!20 &139205691 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4873292056219797070, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160134078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &194590272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,7 +3371,7 @@ PrefabInstance:
     - target: {fileID: 5951780150683561325, guid: 9723a245d19037a4fad8f0e75eafd9bf,
         type: 3}
       propertyPath: showProgressInTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6127079179268187756, guid: 9723a245d19037a4fad8f0e75eafd9bf,
         type: 3}
@@ -17602,6 +17608,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 885298010317280685, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+        type: 3}
+      propertyPath: _zoomSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 885298010317280685, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+        type: 3}
+      propertyPath: _mainCamera
+      value: 
+      objectReference: {fileID: 139205691}
+    - target: {fileID: 885298010317280685, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+        type: 3}
+      propertyPath: _cameraPivot
+      value: 
+      objectReference: {fileID: 1598308370}
+    - target: {fileID: 885298010317280685, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+        type: 3}
+      propertyPath: _zoomSmoothness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 885298010317280685, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+        type: 3}
+      propertyPath: _maxZoomDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 885298010317280685, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+        type: 3}
+      propertyPath: _minZoomDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1337162955261637430, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17657,7 +17693,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraPlayer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 885298010317280685, guid: 1e5a1293ae3a8c5428d067d0478f4ec5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22484,6 +22521,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f25f3134e953534fb54999f4acad6e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1598308370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1337162955261637430, guid: 1e5a1293ae3a8c5428d067d0478f4ec5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160134078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1612525110
 GameObject:
   m_ObjectHideFlags: 0

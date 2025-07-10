@@ -17,6 +17,7 @@ public class CameraMove : MonoBehaviour
     [FormerlySerializedAs("MinSpeed")] [SerializeField] private float _minSpeed;
     [FormerlySerializedAs("SpeedUp")] [SerializeField] private float _speedUp;
     [FormerlySerializedAs("CameraPlayer")] [SerializeField] private GameObject _cameraPlayer;
+
     void Start()
     {
         _player = this.gameObject;
@@ -27,7 +28,14 @@ public class CameraMove : MonoBehaviour
     {
         _inputVector.x = Input.GetKey(KeyCode.A) ? -1 : Input.GetKey(KeyCode.D) ?  1 : 0;
         _inputVector.z = Input.GetKey(KeyCode.W) ?  1 : Input.GetKey(KeyCode.S) ? -1 : 0;
-        _inputVector.y = Input.GetKey(KeyCode.LeftControl) ?  1 : Input.GetKey(KeyCode.LeftShift) ? -1 : 0;
+
+
+        if (Input.GetKey(KeyCode.LeftControl))
+            _inputVector.y = 1;  // Приближение
+        else if (Input.GetKey(KeyCode.LeftShift))
+            _inputVector.y = -1; // Отдаление
+        else
+            _inputVector.y = Input.GetAxis("Mouse ScrollWheel");
     }
 
     public void VerticalScreenTouch(float vertical)
@@ -55,7 +63,7 @@ public class CameraMove : MonoBehaviour
         Vector3 moveVector = (
             _player.transform.right * _inputVector.x + 
                              _player.transform.forward * _inputVector.z + 
-                             _cameraPlayer.transform.forward * (Input.GetMouseButton(0) ? _inputVector.y: 0.0f)
+                             _cameraPlayer.transform.forward * _inputVector.y
             ).normalized * _speedUp;
         
             if (moveVector != Vector3.zero)

@@ -1,18 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectInteractionController : MonoBehaviour
+public class BuildController : ObjectInteractionController
 {
-    protected Camera mainCamera;
-    protected InteractableObject currentHovered;
-    
-    [SerializeField] protected LayerMask interactionLayer;
-    [SerializeField] protected float raycastDistance;
-    
-    private void Start()
-    {
-        mainCamera = Camera.main;
-    }
+    [SerializeField] private Building_SO buildingSO;
+    private int targetIndex = 1;
     
     private void HandleRaycast()
     {
@@ -28,8 +21,8 @@ public class ObjectInteractionController : MonoBehaviour
                 if (currentHovered != null) currentHovered.OnMouseExitCustom();
                 currentHovered = interactable;
                 BuildZone target;
-                if (currentHovered != null) 
-                    currentHovered.OnMouseEnterCustom();
+                if (currentHovered != null && currentHovered.TryGetComponent<BuildZone>(out target))
+                    target.OnMouseEnterCustom(buildingSO.Buildings[targetIndex].prefab);
             }
             
             if (Input.GetMouseButtonDown(0) && currentHovered != null)
@@ -42,12 +35,5 @@ public class ObjectInteractionController : MonoBehaviour
             currentHovered.OnMouseExitCustom();
             currentHovered = null;
         }
-    }
-    
-    private void FixedUpdate()
-    {
-        HandleRaycast();
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay( mainCamera.transform.position,ray.direction, Color.red);
     }
 }

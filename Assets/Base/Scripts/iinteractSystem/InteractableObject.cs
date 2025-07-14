@@ -14,6 +14,11 @@ public abstract class InteractableObject : MonoBehaviour
         if (outline != null) outline.enabled = true;
         // Дополнительные эффекты при наведении
     }
+    public virtual void OnMouseEnterCustom(GameObject _build)
+    {
+        if (outline != null) outline.enabled = true;
+        // Дополнительные эффекты при наведении
+    }
     
     public virtual void OnMouseExitCustom()
     {

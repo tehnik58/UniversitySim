@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BuildZone : InteractableObject
 {
-    [SerializeField]
-    private GameObject build;
+    [SerializeField] public int TargetIndex = 0;
+    [SerializeField] private GameObject build;
     private GameObject buildInstance;
 
     public void SetBuild(GameObject _build)
@@ -21,7 +21,16 @@ public class BuildZone : InteractableObject
     public override void OnMouseEnterCustom()
     {
         base.OnMouseEnterCustom();
-        buildInstance = Instantiate(build, transform.position, Quaternion.identity);
+        if(build != null)
+            buildInstance = Instantiate(build, transform.position, Quaternion.identity);
+    }
+    
+    public override void OnMouseEnterCustom(GameObject _build)
+    {
+        base.OnMouseEnterCustom();
+        build = _build;
+        if(build != null)
+            buildInstance = Instantiate(build, transform.position, Quaternion.identity);
     }
 
     public override void OnMouseExitCustom()

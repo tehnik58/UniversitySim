@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3fde27fb298ba48a7e481714ab3a07, type: 3}
   m_Name: build2
   m_EditorClassIdentifier: 
+  buildingName: "\u041E\u0442\u0434\u0435\u043B\u043A\u0430"
   price: 0
   prefab: {fileID: 6097864753161008262, guid: 92af7b00170625e45a411e7223252d5d, type: 3}

@@ -5,7 +5,8 @@ using UnityEngine;
 public class BuildController : ObjectInteractionController
 {
     [SerializeField] private Building_SO buildingSO;
-    private int targetIndex = 1;
+    [SerializeField] private BuildUIController buildUIController;
+    private InteractableObject TargetBuild;
     
     private void HandleRaycast()
     {
@@ -20,14 +21,18 @@ public class BuildController : ObjectInteractionController
             {
                 if (currentHovered != null) currentHovered.OnMouseExitCustom();
                 currentHovered = interactable;
-                BuildZone target;
-                if (currentHovered != null && currentHovered.TryGetComponent<BuildZone>(out target))
-                    target.OnMouseEnterCustom(buildingSO.Buildings[targetIndex].prefab);
+                if (currentHovered != null && currentHovered.TryGetComponent<BuildZone>(out var target))
+                    target.OnMouseEnterCustom(buildingSO.Buildings[buildUIController.targetIndex].prefab);
             }
             
             if (Input.GetMouseButtonDown(0) && currentHovered != null)
             {
                 currentHovered.OnMouseDownCustom();
+                if (TargetBuild != null)
+                    if (currentHovered != TargetBuild)
+                        TargetBuild = currentHovered;
+                    else
+                        currentHovered.OnMouseDownCustom();
             }
         }
         else if (currentHovered != null)

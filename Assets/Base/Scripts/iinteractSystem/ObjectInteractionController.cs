@@ -14,7 +14,7 @@ public class ObjectInteractionController : MonoBehaviour
         mainCamera = Camera.main;
     }
     
-    private void HandleRaycast()
+    protected virtual void HandleRaycast()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -44,7 +44,7 @@ public class ObjectInteractionController : MonoBehaviour
         }
     }
     
-    private void FixedUpdate()
+    private void Update()
     {
         HandleRaycast();
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);

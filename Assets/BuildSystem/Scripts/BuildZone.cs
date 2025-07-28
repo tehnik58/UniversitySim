@@ -10,7 +10,17 @@ public class BuildZone : InteractableObject
 
     public void SetBuild(GameObject _build)
     {
+        print("switch");
         build = _build;
+        if (build != null)
+        {
+            Destroy(buildInstance);
+            buildInstance = Instantiate(build, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            buildInstance = Instantiate(build, transform.position, Quaternion.identity);
+        }
     }
     
     public override void OnMouseDownCustom()

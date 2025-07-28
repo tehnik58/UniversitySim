@@ -3285,6 +3285,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8641484158597997278, guid: 9723a245d19037a4fad8f0e75eafd9bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8658252762150611626, guid: 9723a245d19037a4fad8f0e75eafd9bf,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3396,11 +3401,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c4aa15b8d96fe4c8f722fd55537933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSO: {fileID: 11400000, guid: 1076718c1c8298a45900b8c344c820b2, type: 2}
-  Build_btn: {fileID: 8098922085848927451, guid: 97f82709a56948d478e3d6ce8cda71cf,
+  buildingSo: {fileID: 11400000, guid: 1076718c1c8298a45900b8c344c820b2, type: 2}
+  buildBtn: {fileID: 8098922085848927451, guid: 97f82709a56948d478e3d6ce8cda71cf,
     type: 3}
-  prefabs: []
   targetIndex: 0
+  IsHovered: 0
 --- !u!43 &225500839
 Mesh:
   m_ObjectHideFlags: 0
@@ -20326,7 +20331,7 @@ MonoBehaviour:
     m_Bits: 8
   raycastDistance: 100
   buildingSO: {fileID: 11400000, guid: 1076718c1c8298a45900b8c344c820b2, type: 2}
-  buildUIController: {fileID: 0}
+  buildUIController: {fileID: 197919645}
 --- !u!1 &1612525110
 GameObject:
   m_ObjectHideFlags: 0

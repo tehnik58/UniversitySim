@@ -62,15 +62,20 @@
   <ItemGroup>
     <Compile Include="Assets\_inGame\Base\Scripts\CustomPool\CustomPoolUpdate.cs" />
     <Compile Include="Assets\_inGame\Base\Scripts\CustomPool\CustomPoolStatic.cs" />
+    <Compile Include="Assets\_inGame\BuildSystem\Scripts\Building_SO.cs" />
     <Compile Include="Assets\_inGame\Base\Scripts\interactableOBj\Interactor.cs" />
     <Compile Include="Assets\_inGame\Base\Scripts\PlayerMove\CameraMove.cs" />
     <Compile Include="Assets\_inGame\EconomeSystem\UIAdapter.cs" />
     <Compile Include="Assets\_inGame\Base\interfaces\IInteractableObj.cs" />
+    <Compile Include="Assets\_inGame\Base\Scripts\iinteractSystem\InteractableObject.cs" />
     <Compile Include="Assets\_inGame\EconomeSystem\UIInputData.cs" />
+    <Compile Include="Assets\_inGame\BuildSystem\Scripts\BuildUIController.cs" />
     <Compile Include="Assets\_inGame\Base\Scripts\interactableOBj\GlobalInteractEvent.cs" />
     <Compile Include="Assets\_inGame\NPCSystem\NPC\Scripts\NpcController.cs" />
     <Compile Include="Assets\_inGame\NPCSystem\NPC\Scripts\NpcType.cs" />
+    <Compile Include="Assets\_inGame\Base\Scripts\SerializebleAction.cs" />
     <Compile Include="Assets\_inGame\EconomeSystem\GamplayStaticController.cs" />
+    <Compile Include="Assets\_inGame\BuildSystem\Scripts\BuildController.cs" />
     <Compile Include="Assets\_inGame\BuildSystem\Scripts\BuildStaticInfo.cs" />
     <Compile Include="Assets\_inGame\NPCSystem\NPC\Scripts\SpawnManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
@@ -78,6 +83,8 @@
     <Compile Include="Assets\_inGame\NPCSystem\NPC\Scripts\NpcPool.cs" />
     <Compile Include="Assets\_inGame\BuildSystem\Scripts\UI\UIBuildingButtonAction.cs" />
     <Compile Include="Assets\_inGame\BuildSystem\Scripts\InteractiveBuildObj.cs" />
+    <Compile Include="Assets\_inGame\BuildSystem\Scripts\BuildZone.cs" />
+    <Compile Include="Assets\_inGame\Base\Scripts\iinteractSystem\ObjectInteractionController.cs" />
     <Compile Include="Assets\_inGame\NPCSystem\Waypoints\Scripts\WaypointManager.cs" />
     <Compile Include="Assets\_inGame\Base\Scripts\interactableOBj\InteractableObj.cs" />
     <Compile Include="Assets\_inGame\EconomeSystem\StaticEconomicInfo.cs" />
@@ -86,6 +93,7 @@
     <Compile Include="Assets\_inGame\Base\Scripts\FPSCap\FPSCap.cs" />
     <Compile Include="Assets\_inGame\BuildSystem\Scripts\UI\UIBuildListBuildingCreator.cs" />
     <Compile Include="Assets\_inGame\BuildSystem\Scripts\UI\UIBuildActivator.cs" />
+    <Compile Include="Assets\_inGame\BuildSystem\Scripts\BaseBuild_SO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

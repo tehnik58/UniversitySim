@@ -22,8 +22,8 @@ public static class GamplayStaticController
 
     private static void UpdatePauseState()
     {
-        bool shouldPause = isManualPause || (expectedNumberOfBuildings > BuildStaticInfo.GetCountOfBuilding());
-        PauseEvent?.Invoke(shouldPause);
+        //bool shouldPause = isManualPause || (expectedNumberOfBuildings > BuildStaticInfo.GetCountOfBuilding());
+        //PauseEvent?.Invoke(shouldPause);
     }
     public static void AddRoom(int exp)
     {
@@ -31,7 +31,7 @@ public static class GamplayStaticController
     }
     public static void CheckConditionsForUnPause()
     {
-        Debug.Log($"{expectedNumberOfBuildings} > {BuildStaticInfo.GetCountOfBuilding()}");
+        //Debug.Log($"{expectedNumberOfBuildings} > {BuildStaticInfo.GetCountOfBuilding()}");
         UpdatePauseState();
     }
     public static bool CheckOnLose()

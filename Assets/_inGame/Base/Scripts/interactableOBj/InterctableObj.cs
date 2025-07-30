@@ -8,7 +8,7 @@ public class InterctableObj : MonoBehaviour
     public SerializebleAction OnHoverAction;
     public SerializebleAction OnUnHoverAction;
     public SerializebleAction OnClickAction;
-    // Start is called before the first frame update
+
     void OnMouseEnter()
     {
         OnHoverAction?.Invoke();

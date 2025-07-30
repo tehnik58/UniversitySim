@@ -6,3 +6,5 @@ using UnityEngine.Events;
 
 [Serializable]
 public class SerializebleAction : UnityEvent { }
+[Serializable]
+public class GameObjectUnityEvent : UnityEvent<GameObject> {}

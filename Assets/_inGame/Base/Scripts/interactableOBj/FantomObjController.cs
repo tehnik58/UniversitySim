@@ -1,37 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FantomObjController : MonoBehaviour
 {
+    [SerializeField]
     public GameObject fantomObject;
     public string fantomName;
     public Material fantomMaterial;
-    public bool IsNotStoped = true;
+    [FormerlySerializedAs("IsActiveSystem")] public bool IsActiveSystem = true;
 
     private GameObject fantomInstance;
 
     private void Start()
     {
         fantomInstance = Instantiate(fantomObject);
-        fantomInstance.transform.position = transform.position;
+        fantomInstance.transform.SetParent(transform, false);
         fantomInstance.SetActive(false);
     }
 
     public void SetFantomStatusActive(bool statusNotStoped)
     {
-        IsNotStoped = statusNotStoped;
+        IsActiveSystem = statusNotStoped;
     }
     
     public void SetFantomStatusActive(bool statusNotStoped, bool statusActiveFantom)
     {
-        IsNotStoped = statusNotStoped;
+        IsActiveSystem = statusNotStoped;
         fantomInstance.SetActive(statusActiveFantom);
     }
     
     public void SwitchFantomStatusActive()
     {
-        IsNotStoped = !IsNotStoped;
+        IsActiveSystem = !IsActiveSystem;
     }
 
     public void SetFantom(GameObject _fantomObject)
@@ -41,7 +43,7 @@ public class FantomObjController : MonoBehaviour
         fantomObject = _fantomObject;
         
         fantomInstance = Instantiate(fantomObject);
-        fantomInstance.transform.position = transform.position;
+        fantomInstance.transform.SetParent(transform, false);
         fantomInstance.SetActive(isFantomeActive);
     }
     public void SetFantom(GameObject _fantomObject, string _fantomName)
@@ -59,12 +61,12 @@ public class FantomObjController : MonoBehaviour
     
     public virtual void FantomOn()
     {
-        if (IsNotStoped)
+        if (IsActiveSystem)
             fantomInstance.SetActive(true);
     }
     public virtual void FantomOff()
     {
-        if (IsNotStoped)
+        if (IsActiveSystem)
             fantomInstance.SetActive(false);
     }
 }
